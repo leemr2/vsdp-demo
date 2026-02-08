@@ -1,7 +1,7 @@
 # VSDP Demo Brand Guidelines
 ## Based on Vision Source Corporate Identity
 
-**Version**: 1.0  
+**Version**: 1.1  
 **Last Updated**: February 2026  
 **Purpose**: Establish consistent visual identity for VSDP demo that builds on Vision Source brand equity while positioning the platform as innovative healthcare technology
 
@@ -31,23 +31,38 @@
 
 #### Primary Colors (Vision Source Heritage)
 
-**VS Blue** (Primary Brand Color)
+**VS Yellow/Gold** (Primary Brand Color - Logo & Primary CTAs)
+- HEX: `#FFC72C` (approximated from logo)
+- RGB: `255, 199, 44`
+- Usage: Vision Source logo text, primary CTA buttons ("Find a Doctor"), brand highlights
+- Meaning: Energy, optimism, clarity, vision
+- Implementation: Tailwind custom color `vs-yellow`
+- Note: This is the most prominent brand color on the landing page
+
+**VS Blue** (Secondary Brand Color)
 - HEX: `#005DAA` (approximated from website)
 - RGB: `0, 93, 170`
-- Usage: Main navigation, primary CTAs, headers
+- Usage: Navigation links, secondary CTAs, headers, text accents
 - Meaning: Trust, professionalism, healthcare reliability
 - Implementation: Tailwind custom color `vs-blue-primary`
 
-**VS Navy** (Secondary)
+**VS Navy** (Tertiary)
 - HEX: `#003B6F` (darker shade for depth)
 - RGB: `0, 59, 111`
-- Usage: Footer, secondary navigation, text on light backgrounds
+- Usage: Footer backgrounds, secondary navigation, text on light backgrounds
 - Meaning: Authority, expertise, stability
 - Implementation: Tailwind custom color `vs-navy`
 
+**VS Dark Gray** (Header/Footer Background)
+- HEX: `#2C2C2C` (approximated from header/footer)
+- RGB: `44, 44, 44`
+- Usage: Header bar, footer background, dark UI elements
+- Meaning: Professional, grounded, sophisticated
+- Implementation: Tailwind custom color `vs-dark-gray`
+
 **White** (Base)
 - HEX: `#FFFFFF`
-- Usage: Backgrounds, negative space
+- Usage: Backgrounds, negative space, text on dark backgrounds, secondary buttons
 - Critical: Vision Source uses clean, minimal white space - avoid cluttered designs
 
 #### VSDP Extended Palette (Innovation Layer)
@@ -97,12 +112,14 @@
 
 ### Color Usage Rules
 
-1. **Primary Actions**: Always VS Blue (`#005DAA`)
-2. **AI Features**: Electric Blue (`#0084FF`) with 10-20% opacity overlays
-3. **Data Visualizations**: Use extended palette (Electric Blue, Teal, Purple) with VS Blue as anchor
-4. **Clinical Alerts**: Semantic colors (Green/Amber/Red) with gray backgrounds, never on colored backgrounds
-5. **Backgrounds**: White primary, Gray 50 for subtle sections, never use colored backgrounds for large areas
-6. **Gradients**: Acceptable for hero sections only - VS Blue to Electric Blue (45° angle)
+1. **Primary Actions & Logo**: VS Yellow/Gold (`#FFC72C`) for Vision Source logo text and primary CTAs (e.g., "Find a Doctor" button)
+2. **Secondary Actions**: VS Blue (`#005DAA`) for navigation links, secondary CTAs, and text accents
+3. **Headers/Footers**: VS Dark Gray (`#2C2C2C`) for header and footer backgrounds
+4. **AI Features**: Electric Blue (`#0084FF`) with 10-20% opacity overlays
+5. **Data Visualizations**: Use extended palette (Electric Blue, Teal, Purple) with VS Blue as anchor
+6. **Clinical Alerts**: Semantic colors (Green/Amber/Red) with gray backgrounds, never on colored backgrounds
+7. **Backgrounds**: White primary, Gray 50 for subtle sections, VS Dark Gray for headers/footers
+8. **Gradients**: Acceptable for hero sections only - VS Blue to Electric Blue (45° angle), or VS Yellow to VS Blue for brand-specific sections
 
 ---
 
@@ -184,9 +201,9 @@ H3: 24px / 32px / 600 / -0.01em
 - Hero: 48x48px (section headers)
 
 **Color Usage**:
-- Primary state: Gray 500 (`#6B7280`)
-- Hover state: VS Blue (`#005DAA`)
-- Active state: Electric Blue (`#0084FF`)
+- Primary state: Gray 500 (`#6B7280`) or White (on dark backgrounds)
+- Hover state: VS Yellow (`#FFC72C`) on dark backgrounds, VS Blue (`#005DAA`) on light backgrounds
+- Active state: Electric Blue (`#0084FF`) for VSDP features, VS Yellow for Vision Source brand elements
 - Disabled: Gray 300 (`#D1D5DB`)
 
 ### Required Icon Categories
@@ -215,7 +232,7 @@ H3: 24px / 32px / 600 / -0.01em
    - Format: SVG
    - Variants: Full ("Vision Source Digital Platform"), abbreviated ("VSDP")
    - Usage: Hero section, footer, loading screens
-   - Color: VS Blue primary, white on dark backgrounds
+   - Color: VS Yellow for brand connection, VS Blue for tech emphasis, white on dark backgrounds
 
 3. **Digital Twin Icon** (Critical - unique to VSDP)
    - Concept: Eye shape with network nodes or data streams
@@ -248,7 +265,19 @@ H3: 24px / 32px / 600 / -0.01em
 
 ### Buttons
 
-**Primary Button** (Main CTAs)
+**Primary Button** (Main CTAs - Vision Source Brand)
+```css
+Background: VS Yellow/Gold (#FFC72C)
+Text: VS Dark Gray or Gray 900, 16px, 600 weight
+Padding: 12px 24px
+Border-radius: 8px
+Hover: Background darkens to #E6B325 (10% darker)
+Active: Scale 0.98
+Disabled: Gray 300 background, Gray 500 text
+Usage: "Find a Doctor" and other primary actions on Vision Source branded pages
+```
+
+**Primary Button Alternative** (VSDP Tech CTAs)
 ```css
 Background: VS Blue (#005DAA)
 Text: White, 16px, 600 weight
@@ -257,6 +286,7 @@ Border-radius: 8px
 Hover: Background darkens to VS Navy (#003B6F)
 Active: Scale 0.98
 Disabled: Gray 300 background, Gray 500 text
+Usage: Primary actions in VSDP demo interface
 ```
 
 **Secondary Button** (Less important actions)
@@ -267,6 +297,7 @@ Border: 2px solid VS Blue
 Padding: 12px 24px
 Border-radius: 8px
 Hover: Background VS Blue, text White
+Usage: "Join VS" and similar secondary actions
 ```
 
 **Tertiary Button** (Inline links)
@@ -377,24 +408,24 @@ Focus: Shadow 0 0 0 3px rgba(0,93,170,0.1)
 
 **Header Navigation**
 ```css
-Background: White
-Border-bottom: 1px solid Gray 200
+Background: VS Dark Gray (#2C2C2C) or White (context-dependent)
+Border-bottom: 1px solid Gray 200 (on white) or transparent (on dark)
 Height: 72px
 Padding: 0 24px
-Logo: Left-aligned, 180px wide
-Nav items: Gray 700, 16px, 500 weight, 16px spacing
-Hover: VS Blue, underline 2px
-Active: VS Blue, underline 2px
-Mobile: Hamburger menu (Gray 700), slide-in drawer
+Logo: Left-aligned, 180px wide, VS Yellow text for "Vision Source®"
+Nav items: White (on dark bg) or Gray 700 (on white bg), 16px, 500 weight, 16px spacing
+Hover: VS Yellow (on dark bg) or VS Blue (on light bg), underline 2px
+Active: VS Yellow (on dark bg) or VS Blue (on light bg), underline 2px
+Mobile: Hamburger menu (White on dark bg, Gray 700 on light bg), slide-in drawer
 ```
 
 **Footer**
 ```css
-Background: Gray 900
+Background: VS Dark Gray (#2C2C2C)
 Text: Gray 300, 14px
-Links: Gray 300, hover White
+Links: Gray 300, hover VS Yellow (#FFC72C)
 Padding: 48px 24px
-Logo: White version, 160px wide
+Logo: White or VS Yellow version, 160px wide
 Sections: 3-column grid (desktop), stacked (mobile)
 ```
 
@@ -460,7 +491,7 @@ Input: Bottom sticky, white background, Gray 300 top border
 
 ### Image Treatment Rules
 
-1. **Overlays**: Use 40% opacity VS Blue gradient for text readability
+1. **Overlays**: Use 40% opacity VS Blue gradient for text readability, or VS Dark Gray for brand consistency on hero images
 2. **Filters**: Subtle (10% saturation reduction for clinical professionalism)
 3. **Alt Text**: Always descriptive, never "image" or empty
 4. **Loading**: Lazy load below fold, blur placeholder (BlurHash)
@@ -596,7 +627,7 @@ Never rely on viewport units (vw/vh) for text sizing.
 
 **Keyboard Navigation**:
 - All interactive elements focusable via Tab
-- Focus indicators: 2px solid Electric Blue, 3px offset
+- Focus indicators: 2px solid Electric Blue (VSDP features) or VS Yellow (Vision Source brand elements), 3px offset
 - Skip links: "Skip to main content" (sr-only, visible on focus)
 - Modal traps: Focus remains in modal until closed
 
@@ -711,9 +742,13 @@ const config: Config = {
     extend: {
       colors: {
         // Vision Source Core
-        'vs-blue': {
-          primary: '#005DAA',
-          navy: '#003B6F',
+        'vs': {
+          yellow: '#FFC72C',
+          blue: {
+            primary: '#005DAA',
+            navy: '#003B6F',
+          },
+          'dark-gray': '#2C2C2C',
         },
         // VSDP Extended
         'vsdp': {
@@ -846,7 +881,7 @@ public/
 - Chat interface
 
 **Combined**:
-- Tagline: "Vision Source Digital Platform" (Vision Source in VS Blue, "Digital Platform" in Electric Blue)
+- Tagline: "Vision Source Digital Platform" (Vision Source in VS Yellow, "Digital Platform" in Electric Blue or VS Blue)
 
 ### Approval Requirements
 
@@ -907,4 +942,5 @@ For MVP demo:
 ---
 
 **Version History**:
+- v1.1 (Feb 2026): Updated color palette based on Vision Source landing page - added VS Yellow/Gold as primary brand color, VS Dark Gray for headers/footers
 - v1.0 (Feb 2026): Initial brand guidelines based on Vision Source corporate site analysis
