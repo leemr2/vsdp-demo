@@ -78,10 +78,20 @@ const { data, isLoading } = api.example.getData.useQuery({ id: "123" });
 Routes under `/(stakeholders)/`: providers, pharma, ehr, bigtech - each demonstrates VSDP value for different audiences.
 
 ### Design System
-- Primary: `vs-blue-primary` (#005DAA), `vs-blue-navy` (#003B6F)
-- VSDP Extended: `vsdp-electric` (#0084FF), `vsdp-teal` (#00BFA5), `vsdp-purple` (#7C4DFF)
-- Clinical alerts: `clinical-success` (#00C853), `clinical-warning` (#FF6F00), `clinical-alert` (#D32F2F)
-- Icons: Lucide React (outlined, 2px stroke)
+**Vision Source Core** (gray-based with yellow accent):
+- `vs-yellow` (#FFC72C) - Primary brand accent, logo, primary CTAs
+- `vs-dark-gray` (#2C2C2C) - Header/footer backgrounds
+- Gray scale for text/UI (Gray 700 body, Gray 500 secondary)
+
+**VSDP Extended** (technology features in demo only):
+- `vsdp-blue-primary` (#005DAA), `vsdp-blue-navy` (#003B6F) - VSDP tech sections
+- `vsdp-electric` (#0084FF) - AI features, data viz
+- `vsdp-teal` (#00BFA5) - Health data
+- `vsdp-purple` (#7C4DFF) - Predictive AI
+
+**Clinical Semantic**: `clinical-success` (#00C853), `clinical-warning` (#FF6F00), `clinical-alert` (#D32F2F)
+
+**Icons**: Lucide React (outlined, 2px stroke)
 
 ### Content Voice
 - Professional healthcare tone: "Apple Health meets Mayo Clinic"

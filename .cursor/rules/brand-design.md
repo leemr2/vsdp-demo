@@ -12,20 +12,29 @@ globs: ["src/**/*.tsx", "src/**/*.css", "tailwind.config.ts"]
 
 ## Color Palette
 
+**Color Strategy**: 
+- **Vision Source Landing Page**: Gray-based monochromatic palette with VS Yellow/Gold as the ONLY accent color (logo, primary CTAs)
+- **VSDP Demo/Technology**: Blue colors (VS Blue, Electric Blue) used to differentiate technology platform features
+- **When to use**: Yellow for Vision Source brand elements, Blue for VSDP-specific technology sections
+
 ### Tailwind Configuration
 ```typescript
 // tailwind.config.ts
 colors: {
-  // Vision Source Core
-  'vs-blue': {
-    primary: '#005DAA',
-    navy: '#003B6F',
+  // Vision Source Core (Gray-based with Yellow accent)
+  'vs': {
+    yellow: '#FFC72C',        // Primary brand accent - logo, primary CTAs
+    'dark-gray': '#2C2C2C',   // Header/footer background
   },
-  // VSDP Extended
+  // VSDP Extended (Technology layer - not on landing page)
   'vsdp': {
-    electric: '#0084FF',
-    teal: '#00BFA5',
-    purple: '#7C4DFF',
+    blue: {
+      primary: '#005DAA',     // VSDP technology accent
+      navy: '#003B6F',         // Darker blue variant
+    },
+    electric: '#0084FF',      // AI/technology features
+    teal: '#00BFA5',          // Health data
+    purple: '#7C4DFF',        // Predictive AI
   },
   // Semantic
   'clinical': {
@@ -38,25 +47,44 @@ colors: {
 
 ### Color Usage Rules
 
-**Primary Actions**: Always VS Blue
+**Vision Source Brand** (Landing Page Style):
+- **Primary Actions & Logo**: VS Yellow/Gold (`vs-yellow`) - the ONLY prominent color
+- **Headers/Footers**: VS Dark Gray (`vs-dark-gray`)
+- **Text**: Gray 700 on white, White on dark gray
+- **Navigation**: White text on dark gray, hover to VS Yellow
+
+**VSDP Technology Features** (Demo Only):
+- **VSDP Sections**: VS Blue (`vsdp-blue-primary`) for technology differentiation
+- **AI Features**: Electric Blue (`vsdp-electric`) with gradients
+- **Data Visualizations**: Extended palette (Electric Blue, Teal, Purple)
+
+**Primary Button** (Vision Source Brand):
 ```tsx
-<button className="bg-vs-blue-primary hover:bg-vs-blue-navy text-white">
+<button className="bg-vs-yellow hover:bg-[#E6B325] text-gray-900 font-semibold px-6 py-3 rounded-lg">
+  Find a Doctor
+</button>
+```
+
+**Primary Button** (VSDP Technology):
+```tsx
+<button className="bg-vsdp-blue-primary hover:bg-vsdp-blue-navy text-white font-semibold px-6 py-3 rounded-lg">
   Explore Provider View
 </button>
 ```
 
-**AI Features**: Electric Blue with gradients
+**AI Features**: Electric Blue with gradients (VSDP only)
 ```tsx
-<div className="bg-gradient-to-r from-vs-blue-primary to-vsdp-electric">
+<div className="bg-gradient-to-r from-vsdp-electric to-vsdp-teal">
   Living Intelligence Copilot
 </div>
 ```
 
-**Data Visualizations**: Extended palette order
+**Data Visualizations**: Extended palette order (VSDP demo)
 1. Electric Blue (`vsdp-electric`)
 2. Teal (`vsdp-teal`)
 3. Purple (`vsdp-purple`)
-4. VS Blue (`vs-blue-primary`)
+4. VS Yellow (`vs-yellow`) - for brand connection
+5. VS Blue (`vsdp-blue-primary`) - use sparingly
 
 **Clinical Alerts**: Semantic colors with backgrounds
 ```tsx
@@ -140,23 +168,30 @@ export default function RootLayout({ children }) {
 
 ### Buttons
 
-**Primary Button**
+**Primary Button** (Vision Source Brand - Yellow)
 ```tsx
-<button className="bg-vs-blue-primary hover:bg-vs-blue-navy text-white font-semibold px-6 py-3 rounded-lg active:scale-98 transition-all duration-200 disabled:bg-gray-300 disabled:text-gray-500">
-  Primary Action
+<button className="bg-vs-yellow hover:bg-[#E6B325] text-gray-900 font-semibold px-6 py-3 rounded-lg active:scale-98 transition-all duration-200 disabled:bg-gray-300 disabled:text-gray-500">
+  Find a Doctor
 </button>
 ```
 
-**Secondary Button**
+**Primary Button** (VSDP Technology - Blue)
 ```tsx
-<button className="bg-white hover:bg-vs-blue-primary text-vs-blue-primary hover:text-white font-semibold px-6 py-3 rounded-lg border-2 border-vs-blue-primary transition-all duration-200">
-  Secondary Action
+<button className="bg-vsdp-blue-primary hover:bg-vsdp-blue-navy text-white font-semibold px-6 py-3 rounded-lg active:scale-98 transition-all duration-200 disabled:bg-gray-300 disabled:text-gray-500">
+  Start Demo
 </button>
 ```
 
-**AI Button** (Special gradient for AI features)
+**Secondary Button** (White/Gray - matches "Join VS" style)
 ```tsx
-<button className="bg-gradient-to-r from-vs-blue-primary to-vsdp-electric hover:brightness-110 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 flex items-center gap-2">
+<button className="bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 font-semibold px-6 py-3 rounded-lg border border-gray-300 hover:border-gray-500 transition-all duration-200">
+  Join VS
+</button>
+```
+
+**AI Button** (VSDP Feature - Electric Blue gradient)
+```tsx
+<button className="bg-gradient-to-r from-vsdp-electric to-vsdp-teal hover:brightness-110 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 flex items-center gap-2">
   <Zap className="w-5 h-5" />
   Ask Living Intelligence
 </button>
@@ -173,13 +208,27 @@ export default function RootLayout({ children }) {
 
 **Feature Card** (Stakeholder sections)
 ```tsx
+{/* Vision Source Brand Style */}
+<div className="bg-white border border-gray-300 rounded-2xl p-8 shadow-sm hover:shadow-md">
+  <div className="flex items-center gap-4 mb-4">
+    <div className="w-12 h-12 text-vs-yellow">
+      <Icon className="w-full h-full" />
+    </div>
+    <h3 className="text-2xl font-semibold text-gray-900">
+      Feature Title
+    </h3>
+  </div>
+  {/* Content */}
+</div>
+
+{/* VSDP Technology Style */}
 <div className="bg-white border-2 border-vsdp-electric/20 rounded-2xl p-8 shadow-lg shadow-vsdp-electric/10">
   <div className="flex items-center gap-4 mb-4">
     <div className="w-12 h-12 text-vsdp-electric">
       <Icon className="w-full h-full" />
     </div>
-    <h3 className="text-2xl font-semibold text-vs-blue-primary">
-      Feature Title
+    <h3 className="text-2xl font-semibold text-vsdp-blue-primary">
+      VSDP Feature Title
     </h3>
   </div>
   {/* Content */}
@@ -225,9 +274,16 @@ const alertStyles = {
 
 **Checkbox**
 ```tsx
+{/* Vision Source Brand */}
 <input
   type="checkbox"
-  className="w-5 h-5 border-2 border-gray-300 rounded text-vs-blue-primary focus:ring-2 focus:ring-vs-blue-primary/10"
+  className="w-5 h-5 border-2 border-gray-300 rounded text-vs-yellow focus:ring-2 focus:ring-vs-yellow/20"
+/>
+
+{/* VSDP Technology */}
+<input
+  type="checkbox"
+  className="w-5 h-5 border-2 border-gray-300 rounded text-vsdp-electric focus:ring-2 focus:ring-vsdp-electric/10"
 />
 ```
 
@@ -245,7 +301,7 @@ const alertStyles = {
 
 **Chart Color Configuration**
 ```tsx
-// Recharts example
+// Recharts example - VSDP demo colors
 <LineChart data={data}>
   <Line 
     type="monotone" 
@@ -259,6 +315,12 @@ const alertStyles = {
     stroke="#00BFA5"  // vsdp-teal
     strokeWidth={2}
   />
+  <Line 
+    type="monotone" 
+    dataKey="brand" 
+    stroke="#FFC72C"  // vs-yellow (for brand connection)
+    strokeWidth={2}
+  />
 </LineChart>
 ```
 
@@ -266,26 +328,44 @@ const alertStyles = {
 
 ### Header Navigation
 ```tsx
-<header className="bg-white border-b border-gray-200 h-18">
+{/* Vision Source Landing Page Style - Dark Gray Header */}
+<header className="bg-vs-dark-gray h-18">
   <div className="container mx-auto px-6 h-full flex items-center justify-between">
-    {/* Logo - left aligned */}
+    {/* Logo - left aligned, VS Yellow text */}
     <div className="w-45">
-      <VSLogo />
+      <VSLogo className="text-vs-yellow" />
     </div>
     
-    {/* Nav items - center */}
+    {/* Nav items - center, white text */}
     <nav className="hidden md:flex items-center gap-6">
       <a 
         href="/providers" 
-        className="text-gray-700 hover:text-vs-blue-primary font-medium hover:underline underline-offset-4 decoration-2"
+        className="text-white hover:text-vs-yellow font-medium hover:underline underline-offset-4 decoration-2 transition-colors"
       >
         Providers
       </a>
       {/* More nav items */}
     </nav>
     
-    {/* CTA - right */}
-    <button className="bg-vs-blue-primary text-white px-6 py-2 rounded-lg">
+    {/* CTA - right, yellow button */}
+    <button className="bg-vs-yellow hover:bg-[#E6B325] text-gray-900 px-6 py-2 rounded-lg font-semibold">
+      Find a Doctor
+    </button>
+  </div>
+</header>
+
+{/* Alternative: White Header for VSDP Demo */}
+<header className="bg-white border-b border-gray-200 h-18">
+  <div className="container mx-auto px-6 h-full flex items-center justify-between">
+    <div className="w-45">
+      <VSLogo />
+    </div>
+    <nav className="hidden md:flex items-center gap-6">
+      <a href="/providers" className="text-gray-700 hover:text-vs-yellow font-medium">
+        Providers
+      </a>
+    </nav>
+    <button className="bg-vsdp-blue-primary text-white px-6 py-2 rounded-lg">
       Start Demo
     </button>
   </div>
@@ -294,12 +374,13 @@ const alertStyles = {
 
 ### Footer
 ```tsx
-<footer className="bg-gray-900 text-gray-300 py-12">
+{/* Vision Source Landing Page Style - Dark Gray */}
+<footer className="bg-vs-dark-gray text-gray-300 py-12">
   <div className="container mx-auto px-6">
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {/* 3-column layout */}
     </div>
-    <div className="mt-8 pt-8 border-t border-gray-800 text-sm text-center">
+    <div className="mt-8 pt-8 border-t border-gray-700 text-sm text-center">
       <p>&copy; 2026 Vision Source. All rights reserved.</p>
     </div>
   </div>
@@ -356,7 +437,8 @@ const alertStyles = {
 <div className="transition-all duration-200 hover:scale-102 hover:-translate-y-0.5">
 
 {/* Color transitions */}
-<button className="transition-colors duration-200 hover:bg-vs-blue-navy">
+<button className="transition-colors duration-200 hover:bg-[#E6B325]">  {/* VS Yellow hover */}
+<button className="transition-colors duration-200 hover:bg-vsdp-blue-navy">  {/* VSDP Blue hover */}
 
 {/* Smooth entrance */}
 <div className="animate-fade-in">
@@ -403,11 +485,13 @@ import { Eye, Heart, Activity, TrendingUp, AlertCircle } from 'lucide-react';
 // Default state
 <Icon className="w-6 h-6 text-gray-500" />
 
-// Hover state
-<Icon className="w-6 h-6 text-gray-500 hover:text-vs-blue-primary" />
+// Hover state (Vision Source Brand)
+<Icon className="w-6 h-6 text-white hover:text-vs-yellow" />  {/* On dark bg */}
+<Icon className="w-6 h-6 text-gray-500 hover:text-gray-700" />  {/* On light bg */}
 
 // Active state
-<Icon className="w-6 h-6 text-vsdp-electric" />
+<Icon className="w-6 h-6 text-vs-yellow" />        {/* Vision Source brand */}
+<Icon className="w-6 h-6 text-vsdp-electric" />    {/* VSDP features */}
 
 // Disabled state
 <Icon className="w-6 h-6 text-gray-300" />

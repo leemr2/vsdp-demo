@@ -44,7 +44,7 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 - Scattered windows on left converge and merge into unified interface on right
 - Data silos break apart and flow together
-- Color shift: Chaotic red/orange → Calm blue/green
+- Color shift: Chaotic red/orange → Calm gray/yellow (VS Yellow accent appears as unified interface emerges)
 
 **Hero Headline** (Appears after animation):
 
@@ -304,7 +304,7 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 ### Section 8: Call to Action
 
-**Visual Design**: Full-width banner with gradient background (blue to green)
+**Visual Design**: Full-width banner with VS Dark Gray (`#2C2C2C`) background or subtle gray gradient
 
 **Headline**:
 
@@ -314,37 +314,39 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 **Primary CTA**:
 
-> [Large Button] "Start Your Journey" → Scrolls back to Section 4
+> [Large Button - VS Yellow/Gold (`#FFC72C`)] "Start Your Journey" → Scrolls back to Section 4
 
 **Secondary CTA**:
 
-> [Text Link] "Request Pilot Program Information" → Lead capture form modal
+> [Text Link - White or Gray 300] "Request Pilot Program Information" → Lead capture form modal
 
 **Tertiary CTA**:
 
-> [Text Link] "Download Technical Whitepaper" → PDF download
+> [Text Link - White or Gray 300] "Download Technical Whitepaper" → PDF download
 
 ------
 
 ### Persistent Elements Throughout Page
 
-**Top Navigation Bar** (Sticky, translucent background):
+**Top Navigation Bar** (Sticky, VS Dark Gray (`#2C2C2C`) background):
 
-- **Left**: VSDP logo + "Vision Source Digital Platform"
-- **Center**: Navigation links
+- **Left**: Vision Source logo (VS Yellow text) + "Vision Source Digital Platform" (white text)
+- **Center**: Navigation links (White text, 16px, 500 weight)
   - "Living Intelligence"
   - "Choose Your Path"
   - "Implementation"
   - "About"
+  - Hover: VS Yellow (`#FFC72C`), underline 2px
 - **Right**:
-  - "Request Demo" button (highlighted)
-  - Living Intelligence Copilot icon (floating)
+  - "Request Demo" button (VS Yellow/Gold primary button style)
+  - Living Intelligence Copilot icon (floating - Electric Blue for VSDP feature)
 
-**Living Intelligence Copilot** (Floating button, bottom-right):
+**Living Intelligence Copilot** (Floating button, bottom-right - VSDP Feature):
 
-- **Default State**: Pulsing blue circle with sparkle icon
+- **Default State**: Pulsing Electric Blue (`#0084FF`) circle with sparkle icon (VSDP-specific feature)
 - **Hover State**: Expands to show "Ask me anything about VSDP"
 - **Click**: Opens chat overlay with Claude AI
+- **Chat Overlay**: White background, header with Electric Blue to Teal gradient (VSDP-specific)
 - **Suggested Questions** (appear in chat):
   - "How does VSDP protect patient privacy?"
   - "What's the implementation timeline for practices?"
@@ -352,17 +354,19 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
   - "Can you explain the digital twin concept?"
   - "What technologies enable continuous monitoring?"
 
-**Footer** (Appears at bottom):
+**Footer** (Appears at bottom - VS Dark Gray background):
 
+- **Background**: VS Dark Gray (`#2C2C2C`) - matches landing page
 - **Left Column**:
-  - VSDP + Vision Source logos
-  - Tagline: "Transforming Optometry Through Living Intelligence"
-- **Center Column**: Quick Links
+  - Vision Source logo (White or VS Yellow version)
+  - VSDP wordmark (White or Gray 300)
+  - Tagline: "Transforming Optometry Through Living Intelligence" (Gray 300 text)
+- **Center Column**: Quick Links (Gray 300 text, hover VS Yellow)
   - Provider Journey
   - Pharma Journey
   - Health System Journey
   - Tech Partner Journey
-- **Right Column**: Contact & Legal
+- **Right Column**: Contact & Legal (Gray 300 text, hover VS Yellow)
   - "Request Information"
   - Privacy Policy
   - Terms of Use
@@ -374,32 +378,57 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 ### Color Palette
 
-#### Primary Colors (Vision Source Heritage)
+#### Primary Colors (Vision Source Heritage - Landing Page Palette)
 
-- **VS Blue** (Primary Brand Color): `#005DAA`
-  - Usage: Main navigation, primary CTAs, headers
-  - Meaning: Trust, professionalism, healthcare reliability
-  
-- **VS Navy** (Secondary): `#003B6F`
-  - Usage: Footer, secondary navigation, text on light backgrounds
-  - Meaning: Authority, expertise, stability
+**Note**: The Vision Source landing page uses a **monochromatic gray palette with VS Yellow/Gold as the ONLY prominent accent color**. Blue colors are reserved for VSDP demo sections only.
 
-- **White** (Base): `#FFFFFF`
-  - Usage: Backgrounds, negative space
+- **VS Yellow/Gold** (Primary Brand Accent - Logo & Primary CTAs): `#FFC72C`
+  - Usage: Vision Source logo text, primary CTA buttons ("Find a Doctor", "Experience the Future of Eye Care"), brand highlights
+  - Meaning: Energy, optimism, clarity, vision
+  - **This is the ONLY prominent color on the landing page**
+
+- **VS Dark Gray** (Primary Background - Header/Footer): `#2C2C2C`
+  - Usage: Header bar, footer background, dark UI elements
+  - Meaning: Professional, grounded, sophisticated
+  - **Dominant background color for navigation and footer areas**
+
+- **White** (Primary Background - Content Areas): `#FFFFFF`
+  - Usage: Main content backgrounds, negative space, text on dark backgrounds, secondary buttons
   - Critical: Vision Source uses clean, minimal white space - avoid cluttered designs
 
-#### VSDP Extended Palette (Innovation Layer)
+#### Gray Scale (Primary Text & UI Elements)
+
+- **Gray 700**: `#374151` - Body text on white backgrounds
+- **Gray 500**: `#6B7280` - Secondary text, icons
+- **Gray 300**: `#D1D5DB` - Borders, dividers
+- **Gray 100**: `#F3F4F6` - Subtle backgrounds
+- **Gray 50**: `#F9FAFB` - Light section backgrounds
+- **Gray 900**: `#111827` - Headlines
+
+**Note**: The landing page uses a sophisticated gray scale palette with yellow as the only accent color.
+
+#### VSDP Extended Palette (Innovation Layer - Demo Sections Only)
+
+**Note**: These colors are used in VSDP demo sections to differentiate the technology platform, but are NOT used on the main Vision Source landing page.
+
+- **VS Blue** (VSDP Technology Accent): `#005DAA`
+  - Usage: VSDP-specific features, technology sections, secondary CTAs in demo
+  - Meaning: Trust, professionalism, healthcare reliability
+  - **Not present on main Vision Source site**
+
+- **VS Navy** (VSDP Dark Accent): `#003B6F`
+  - Usage: Darker blue variants for depth and contrast in VSDP interfaces
 
 - **Electric Blue** (AI/Technology Accent): `#0084FF`
-  - Usage: AI features, data visualizations, interactive elements
+  - Usage: AI features, data visualizations, interactive elements in VSDP demo
   - Meaning: Innovation, intelligence, digital transformation
 
 - **Teal** (Health Data): `#00BFA5`
-  - Usage: Health metrics, positive outcomes, continuous monitoring indicators
+  - Usage: Health metrics, positive outcomes, continuous monitoring indicators in VSDP demo
   - Meaning: Health, vitality, growth
 
 - **Purple** (Predictive AI): `#7C4DFF`
-  - Usage: Predictive analytics, AI-generated insights, future-looking features
+  - Usage: Predictive analytics, AI-generated insights, future-looking features in VSDP demo
   - Meaning: Intelligence, foresight, advanced technology
 
 #### Semantic Colors
@@ -408,23 +437,22 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 - **Warning Amber**: `#FF6F00` (Medium-priority alerts, "attention needed" states)
 - **Alert Red**: `#D32F2F` (High-priority clinical alerts, urgent actions required)
 
-#### Neutral Grays
-
-- **Gray 50**: `#F9FAFB` (Backgrounds)
-- **Gray 100**: `#F3F4F6` (Subtle backgrounds)
-- **Gray 300**: `#D1D5DB` (Borders)
-- **Gray 500**: `#6B7280` (Secondary text)
-- **Gray 700**: `#374151` (Body text)
-- **Gray 900**: `#111827` (Headlines)
-
 #### Color Usage Rules
 
-1. **Primary Actions**: Always VS Blue (`#005DAA`)
-2. **AI Features**: Electric Blue (`#0084FF`) with 10-20% opacity overlays
-3. **Data Visualizations**: Use extended palette (Electric Blue, Teal, Purple) with VS Blue as anchor
-4. **Clinical Alerts**: Semantic colors (Green/Amber/Red) with gray backgrounds, never on colored backgrounds
-5. **Backgrounds**: White primary, Gray 50 for subtle sections, never use colored backgrounds for large areas
-6. **Gradients**: Acceptable for hero sections only - VS Blue to Electric Blue (45° angle)
+**Vision Source Landing Page Palette** (Gray-based with Yellow Accent):
+1. **Primary Actions & Logo**: VS Yellow/Gold (`#FFC72C`) for Vision Source logo text and primary CTAs (e.g., "Experience the Future of Eye Care" button) - **this is the ONLY prominent color on the landing page**
+2. **Navigation Text**: White on dark gray header, or Gray 700 on white backgrounds
+3. **Headers/Footers**: VS Dark Gray (`#2C2C2C`) for header and footer backgrounds
+4. **Secondary Buttons**: White background with border, or transparent with text
+5. **Text Hierarchy**: Gray 700 for body text, Gray 500 for secondary text, White for text on dark backgrounds
+6. **Backgrounds**: White primary for content, VS Dark Gray for navigation/footer, Gray 50/100 for subtle sections
+
+**VSDP Extended Palette** (For Demo/Technology Features):
+7. **VSDP Technology Sections**: VS Blue (`#005DAA`) for VSDP-specific features, technology sections, secondary CTAs in demo
+8. **AI Features**: Electric Blue (`#0084FF`) with 10-20% opacity overlays (VSDP demo only)
+9. **Data Visualizations**: Use extended palette (Electric Blue, Teal, Purple) - avoid using VS Blue as primary anchor on Vision Source branded sections
+10. **Clinical Alerts**: Semantic colors (Green/Amber/Red) with gray backgrounds, never on colored backgrounds
+11. **Gradients**: Acceptable for VSDP hero sections only - Electric Blue to Teal (45° angle), or VS Yellow to Electric Blue for technology highlights
 
 ### Typography
 
@@ -478,7 +506,17 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 #### Buttons
 
-**Primary Button** (Main CTAs):
+**Primary Button** (Main CTAs - Vision Source Brand):
+- Background: VS Yellow/Gold (`#FFC72C`)
+- Text: VS Dark Gray or Gray 900, 16px, 600 weight
+- Padding: 12px 24px
+- Border-radius: 8px
+- Hover: Background darkens to `#E6B325` (10% darker)
+- Active: Scale 0.98
+- Disabled: Gray 300 background, Gray 500 text
+- Usage: "Experience the Future of Eye Care" and other primary actions on Vision Source branded pages
+
+**Primary Button Alternative** (VSDP Tech CTAs - Demo Only):
 - Background: VS Blue (`#005DAA`)
 - Text: White, 16px, 600 weight
 - Padding: 12px 24px
@@ -486,27 +524,32 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 - Hover: Background darkens to VS Navy (`#003B6F`)
 - Active: Scale 0.98
 - Disabled: Gray 300 background, Gray 500 text
+- Usage: Primary actions in VSDP demo interface only (not on Vision Source landing page)
 
 **Secondary Button** (Less important actions):
 - Background: White
-- Text: VS Blue, 16px, 600 weight
-- Border: 2px solid VS Blue
+- Text: Gray 700 or VS Dark Gray, 16px, 600 weight
+- Border: 2px solid Gray 300 (or 1px solid Gray 500)
 - Padding: 12px 24px
 - Border-radius: 8px
-- Hover: Background VS Blue, text White
+- Hover: Background Gray 50, border Gray 500
+- Usage: "Request Demo" and similar secondary actions - matches landing page white button style
 
 **Tertiary Button** (Inline links):
 - Background: Transparent
-- Text: VS Blue, 16px, 600 weight, underline on hover
+- Text: Gray 700 (on white) or White (on dark), 16px, 600 weight, underline on hover
 - Padding: 4px 0
+- Hover: VS Yellow (on dark bg) or Gray 900 (on light bg)
 
-**AI Button** (Chat interface, AI features):
-- Background: Gradient (VS Blue to Electric Blue, 135°)
+**AI Button** (Chat interface, AI features - VSDP only):
+- Background: Gradient (Electric Blue to Teal, 135°)
 - Text: White, 16px, 600 weight
 - Padding: 12px 24px
 - Border-radius: 8px
 - Icon: Zap icon, 20px, white
 - Hover: Brightness 110%
+- Subtle animation: Gradient shift on hover
+- Note: This is VSDP-specific, so Electric Blue is appropriate
 
 #### Cards
 
@@ -521,12 +564,12 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 **Feature Card** (Stakeholder sections):
 - Background: White
-- Border: 2px solid Electric Blue (20% opacity)
+- Border: 2px solid Gray 300 (Vision Source style) or Electric Blue (20% opacity for VSDP sections)
 - Border-radius: 16px
 - Padding: 32px
-- Shadow: 0 4px 8px rgba(0,132,255,0.1)
-- Header: VS Blue, 24px, 600 weight
-- Icon: 48px, Electric Blue
+- Shadow: 0 4px 8px rgba(0,0,0,0.1) (gray) or rgba(0,132,255,0.1) (VSDP)
+- Header: Gray 900 (Vision Source) or Electric Blue (VSDP sections), 24px, 600 weight
+- Icon: 48px, VS Yellow (brand) or Electric Blue (VSDP)
 
 **Alert Card** (Clinical alerts):
 - Background: Semantic color (10% opacity) - Red/Amber/Green
@@ -535,6 +578,30 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 - Padding: 16px 20px
 - Icon: 24px, semantic color
 - Text: Gray 900, 16px, 400 weight
+
+### Forms & Inputs
+
+**Text Input**:
+- Background: White
+- Border: 1px solid Gray 300
+- Border-radius: 8px
+- Padding: 12px 16px
+- Font: 16px, 400 weight
+- Placeholder: Gray 500
+- Focus: Border Electric Blue (2px), shadow 0 0 0 3px rgba(0,132,255,0.1)
+- Error: Border Alert Red, helper text Red
+
+**Dropdown/Select**:
+- Same as text input
+- ChevronDown icon: Gray 500, 20px
+- Hover: Border Gray 500
+
+**Checkbox/Radio**:
+- Size: 20x20px
+- Border: 2px solid Gray 300
+- Border-radius: 4px (checkbox), 50% (radio)
+- Checked: Background VS Yellow (brand) or Electric Blue (VSDP), white checkmark
+- Focus: Shadow 0 0 0 3px rgba(255,199,44,0.2) (VS Yellow) or rgba(0,132,255,0.1) (Electric Blue)
 
 ### Iconography
 
@@ -549,9 +616,9 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 - Hero: 48x48px (section headers)
 
 **Color Usage**:
-- Primary state: Gray 500 (`#6B7280`)
-- Hover state: VS Blue (`#005DAA`)
-- Active state: Electric Blue (`#0084FF`)
+- Primary state: Gray 500 (`#6B7280`) or White (on dark backgrounds)
+- Hover state: VS Yellow (`#FFC72C`) on dark backgrounds, Gray 700 on light backgrounds
+- Active state: VS Yellow for Vision Source brand elements, Electric Blue (`#0084FF`) for VSDP features only
 - Disabled: Gray 300 (`#D1D5DB`)
 
 **Icon Usage Rules**:
@@ -560,6 +627,29 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 3. **Grouping**: Never use more than 3 icons in a horizontal row without labels
 4. **Animation**: Subtle hover scale (1.05x), 200ms ease-out transition
 5. **Accessibility**: Always include aria-label or sr-only text
+
+### Navigation
+
+**Header Navigation**:
+- Background: VS Dark Gray (`#2C2C2C`) - matches landing page
+- Border-bottom: Transparent or subtle Gray 900 border
+- Height: 72px
+- Padding: 0 24px
+- Logo: Left-aligned, 180px wide, VS Yellow text for "Vision Source®"
+- Nav items: White, 16px, 500 weight, 16px spacing
+- Hover: VS Yellow (`#FFC72C`), underline 2px (matches landing page)
+- Active: VS Yellow (`#FFC72C`), underline 2px
+- Mobile: Hamburger menu (White), slide-in drawer with VS Dark Gray background
+- Note: Landing page uses dark gray header with white text - no blue navigation elements
+
+**Footer**:
+- Background: VS Dark Gray (`#2C2C2C`) - matches landing page
+- Text: Gray 300, 14px
+- Links: Gray 300, hover VS Yellow (`#FFC72C`) or White
+- Padding: 48px 24px
+- Logo: White or VS Yellow version, 160px wide
+- Sections: 3-column grid (desktop), stacked (mobile)
+- Note: Landing page footer is dark gray with gray/white text - no blue elements
 
 ### Interaction Patterns
 
@@ -612,6 +702,50 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 ❌ No "bouncy" effects in clinical data displays  
 ✅ All animations respect `prefers-reduced-motion`
 
+### Modals & Overlays
+
+**Modal**:
+- Backdrop: Black, 50% opacity
+- Content: White, 600px max-width, 24px padding
+- Border-radius: 16px
+- Close button: Top-right, Gray 500, hover Gray 900
+- Animation: Fade in + scale from 0.95 to 1.0, 200ms
+
+**Chat Overlay** (Living Intelligence Copilot - VSDP Feature):
+- Position: Fixed bottom-right, 24px from edges
+- Width: 400px, height 600px (desktop), fullscreen (mobile)
+- Background: White
+- Border-radius: 16px (desktop only)
+- Shadow: 0 8px 24px rgba(0,0,0,0.15)
+- Header: Gradient (Electric Blue to Teal) for VSDP, or VS Dark Gray for brand consistency, white text
+- Messages: Alternating left (user, Gray 100 bg) / right (AI, Electric Blue 10% bg)
+- Input: Bottom sticky, white background, Gray 300 top border
+- Note: This is a VSDP-specific feature, so Electric Blue is appropriate here
+
+### Data Visualizations
+
+**Chart Colors** (Use in order - VSDP demo only):
+1. Electric Blue (`#0084FF`) - Primary for VSDP data visualizations
+2. Teal (`#00BFA5`)
+3. Purple (`#7C4DFF`)
+4. VS Blue (`#005DAA`) - Use sparingly, for VSDP-specific sections
+5. VS Yellow (`#FFC72C`) - For brand connection in mixed contexts
+6. Warning Amber (`#FF6F00`)
+7. Success Green (`#00C853`)
+Note: Vision Source landing page does not feature data visualizations - these are VSDP-specific
+
+**Chart Styles**:
+- Line charts: 2px stroke, smooth curves, no fills
+- Bar charts: 8px border-radius on top corners
+- Axis labels: Gray 500, 12px
+- Grid lines: Gray 200, 1px, dashed
+- Tooltips: White background, Gray 900 text, subtle shadow
+
+**Clinical Data Display**:
+- OCT/ERG waveforms: Electric Blue line, 2px stroke
+- Trend lines: Dotted (good trend: Green, concerning: Amber, critical: Red)
+- Data points: 6px circle, Electric Blue fill, white border
+
 ### Responsive Breakpoints
 
 #### Standard Breakpoints (Tailwind defaults)
@@ -661,7 +795,7 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 **Keyboard Navigation**:
 - All interactive elements focusable via Tab
-- Focus indicators: 2px solid Electric Blue, 3px offset
+- Focus indicators: 2px solid VS Yellow (Vision Source brand elements) or Electric Blue (VSDP features only), 3px offset
 - Skip links: "Skip to main content" (sr-only, visible on focus)
 - Modal traps: Focus remains in modal until closed
 
