@@ -74,7 +74,7 @@ colors: {
 
 **AI Features**: Electric Blue with gradients (VSDP only)
 ```tsx
-<div className="bg-gradient-to-r from-vsdp-electric to-vsdp-teal">
+<div className="bg-linear-to-r from-vsdp-electric to-vsdp-teal">
   Living Intelligence Copilot
 </div>
 ```
@@ -191,7 +191,7 @@ export default function RootLayout({ children }) {
 
 **AI Button** (VSDP Feature - Electric Blue gradient)
 ```tsx
-<button className="bg-gradient-to-r from-vsdp-electric to-vsdp-teal hover:brightness-110 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 flex items-center gap-2">
+<button className="bg-linear-to-r from-vsdp-electric to-vsdp-teal hover:brightness-110 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 flex items-center gap-2">
   <Zap className="w-5 h-5" />
   Ask Living Intelligence
 </button>
@@ -245,7 +245,7 @@ const alertStyles = {
 
 <div className={cn('rounded-lg p-4', alertStyles[severity])}>
   <div className="flex items-start gap-3">
-    <AlertCircle className="w-6 h-6 flex-shrink-0" />
+    <AlertCircle className="w-6 h-6 shrink-0" />
     <div>
       <p className="font-semibold">{alert.message}</p>
       <p className="text-sm text-gray-700">{alert.explanation}</p>

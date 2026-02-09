@@ -81,22 +81,22 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 - **Icon**: Neural network with nodes lighting up in sequence
 - **Headline**: Collective Intelligence
 - **Body**: Every patient interaction trains VSDP's algorithms. With 3,000+ Vision Source practices contributing data, digital twins learn which interventions work best for patients like yours—not generic populations, but your specific patients.
-- **Example**: "Myopia progression rates vary 3x based on lifestyle patterns. VSDP identifies your patient's specific risk profile and personalizes outdoor time recommendations accordingly."
+- **Example**: "Myopia progression rates vary 3x based on lifestyle patterns. VSDP identifies your patient's specific risk profile and personalizes treatment recommendations accordingly."
 - **Hover State**: Card expands to show sample prediction graph
 
 **Column 2: Sensors That Monitor**
 
 - **Icon**: Eye with radiating sensor waves
 - **Headline**: Continuous Awareness
-- **Body**: From clinic-based retinal imaging to at-home smartphone assessments to emerging wearable contact lenses, VSDP integrates data from wherever your patients are—turning episodic snapshots into continuous awareness of changing conditions.
-- **Example**: "Traditional care: Annual visits catch diabetic retinopathy after damage occurs. VSDP: Weekly monitoring detects microvascular changes 6+ months earlier, when interventions are most effective."
+- **Body**: From clinic-based retinal imaging to at-home smartphone assessments, continuous glucose monitors to emerging wearable erg technology, VSDP integrates data from wherever your patients are—turning episodic snapshots into continuous awareness of changing conditions.
+- **Example**: "Traditional care: Visits catch diabetic retinopathy after damage occurs, scheduling is one size fits all. VSDP: Weekly monitoring detects risk factor changes, leading to more frequent visits catching changes months earlier, when interventions are most effective."
 - **Hover State**: Timeline animation showing intervention window expansion
 
-**Column 3: Biology That Interfaces**
+**Column 3: Biology That Interfaces (emerging tech)**
 
-- **Icon**: Smart contact lens with embedded circuits
+- **Icon**: Smart glasses with embedded circuits
 - **Headline**: Neural Connection
-- **Body**: Emerging technologies like ERG-enabled contact lenses and e-tattoo electrodes allow VSDP to measure not just structural changes but neural function—detecting disease at the level of cellular signaling before visible damage occurs.
+- **Body**: Emerging technologies like ERG/VEP-enabled glasses and e-tattoo electrodes allow VSDP to measure not just structural changes but neural function—detecting disease at the level of cellular signaling before visible damage occurs.
 - **Example**: "VEP (Visual Evoked Potential) patterns can predict glaucoma progression years before traditional field testing shows defects. VSDP uses these biomarkers to optimize treatment timing."
 - **Hover State**: Animation of signal traveling from retina to brain to device
 
@@ -330,7 +330,7 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 **Top Navigation Bar** (Sticky, VS Dark Gray (`#2C2C2C`) background):
 
-- **Left**: Vision Source logo (VS Yellow text) + "Vision Source Digital Platform" (white text)
+- **Left**: Vision Source VSDP logo (VS Yellow text)
 - **Center**: Navigation links (White text, 16px, 500 weight)
   - "Living Intelligence"
   - "Choose Your Path"
@@ -350,7 +350,7 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 - **Suggested Questions** (appear in chat):
   - "How does VSDP protect patient privacy?"
   - "What's the implementation timeline for practices?"
-  - "How is this different from Epic or other EHRs?"
+  - "How is this different from other EHRs?"
   - "Can you explain the digital twin concept?"
   - "What technologies enable continuous monitoring?"
 
