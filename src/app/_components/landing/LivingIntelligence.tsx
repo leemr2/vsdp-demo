@@ -1,6 +1,5 @@
 "use client";
 
-import { useInView } from "framer-motion";
 import Lottie from "lottie-react";
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -78,14 +77,6 @@ function PillarCard({
 
 export function LivingIntelligence() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { amount: 0.2, once: true });
-  const [linesVisible, setLinesVisible] = useState(false);
-
-  useEffect(() => {
-    if (!isInView) return;
-    const t = setTimeout(() => setLinesVisible(true), 400);
-    return () => clearTimeout(t);
-  }, [isInView]);
 
   return (
     <section
@@ -117,77 +108,6 @@ export function LivingIntelligence() {
               <PillarCard key={pillar.id} {...pillar} />
             ))}
           </div>
-
-          {/* Connecting animation: triangle and "Digital Twin Core" */}
-          <motion.div
-            className="pointer-events-none absolute inset-0 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <svg
-              className="absolute h-full w-full max-w-2xl"
-              viewBox="0 0 400 300"
-              fill="none"
-              aria-hidden
-            >
-              {/* Triangle connecting the three pillars (approximate positions) */}
-              {linesVisible && (
-                <>
-                  <motion.line
-                    x1="200"
-                    y1="80"
-                    x2="100"
-                    y2="220"
-                    stroke="var(--color-vsdp-electric)"
-                    strokeWidth="1.5"
-                    strokeOpacity="0.4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4 }}
-                  />
-                  <motion.line
-                    x1="100"
-                    y1="220"
-                    x2="300"
-                    y2="220"
-                    stroke="var(--color-vsdp-electric)"
-                    strokeWidth="1.5"
-                    strokeOpacity="0.4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.1 }}
-                  />
-                  <motion.line
-                    x1="300"
-                    y1="220"
-                    x2="200"
-                    y2="80"
-                    stroke="var(--color-vsdp-electric)"
-                    strokeWidth="1.5"
-                    strokeOpacity="0.4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.2 }}
-                  />
-                </>
-              )}
-            </svg>
-            <motion.div
-              className="relative z-10 rounded-full bg-vsdp-electric/10 px-6 py-3"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={
-                linesVisible
-                  ? { scale: 1, opacity: 1 }
-                  : { scale: 0, opacity: 0 }
-              }
-              transition={{ delay: 0.8, duration: 0.4 }}
-            >
-              <span className="text-sm font-semibold text-vsdp-electric">
-                Digital Twin Core
-              </span>
-            </motion.div>
-          </motion.div>
         </div>
 
         <ScrollReveal className="mt-16 text-center">

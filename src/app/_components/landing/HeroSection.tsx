@@ -154,15 +154,6 @@ export function HeroSection() {
                       sizes="100vw"
                     />
                   </div>
-                  {/* Alert overlays */}
-                  <div className="absolute left-4 right-4 top-4 flex flex-col gap-2">
-                    <span className="rounded bg-clinical-alert/90 px-3 py-1.5 text-xs font-medium text-white">
-                      Risk of Diabetic retinopathy progression detected
-                    </span>
-                    <span className="rounded bg-vsdp-electric/90 px-3 py-1.5 text-xs font-medium text-white">
-                      Intervention recommended: 3-month window
-                    </span>
-                  </div>
                 </div>
                 {/* Happy doctor silhouette - far right to avoid covering CTA and text */}
                 <div className="absolute bottom-4 right-4 z-0 w-24 lg:right-8 lg:w-32">

@@ -42,34 +42,9 @@ export function TransformationSlider() {
 
         <ScrollReveal>
           <div className="relative flex h-[420px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg md:h-[380px]">
-            {/* Left side - Current State */}
+            {/* Left side - VSDP State (more visible when slider is left) */}
             <div
-              className="absolute inset-y-0 left-0 flex flex-col bg-gray-100 p-6"
-              style={{ width: `${width}%` }}
-            >
-              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
-                Practitioner view
-              </h3>
-              <p className="mb-4 text-sm text-gray-700">
-                Fragmented interface: multiple systems, charts, and notes.
-              </p>
-              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
-                Patient view
-              </h3>
-              <p className="mb-4 italic text-gray-700">
-                &ldquo;I see my eye doctor once a year. I hope nothing&apos;s
-                wrong.&rdquo;
-              </p>
-              <div className="mt-auto rounded-lg border border-gray-300 bg-amber-50/50 p-3">
-                <p className="text-sm font-medium text-gray-800">
-                  Reactive Care: Responding to problems after they develop
-                </p>
-              </div>
-            </div>
-
-            {/* Right side - VSDP State */}
-            <div
-              className="absolute inset-y-0 right-0 flex flex-col bg-white p-6"
+              className="absolute inset-y-0 left-0 flex flex-col bg-white p-6"
               style={{ width: `${100 - width}%` }}
             >
               <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-vsdp-electric">
@@ -92,10 +67,35 @@ export function TransformationSlider() {
               </div>
             </div>
 
-            {/* Divider line */}
+            {/* Right side - Current State (more visible when slider is right) */}
+            <div
+              className="absolute inset-y-0 right-0 flex flex-col bg-gray-100 p-6"
+              style={{ width: `${width}%` }}
+            >
+              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
+                Practitioner view
+              </h3>
+              <p className="mb-4 text-sm text-gray-700">
+                Fragmented interface: multiple systems, charts, and notes.
+              </p>
+              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
+                Patient view
+              </h3>
+              <p className="mb-4 italic text-gray-700">
+                &ldquo;I see my eye doctor once a year. I hope nothing&apos;s
+                wrong.&rdquo;
+              </p>
+              <div className="mt-auto rounded-lg border border-gray-300 bg-amber-50/50 p-3">
+                <p className="text-sm font-medium text-gray-800">
+                  Reactive Care: Responding to problems after they develop
+                </p>
+              </div>
+            </div>
+
+            {/* Divider line (between VSDP left and Current right) */}
             <div
               className="absolute top-0 bottom-0 z-10 w-1 bg-vs-dark-gray"
-              style={{ left: `${width}%`, transform: "translateX(-50%)" }}
+              style={{ left: `${100 - width}%`, transform: "translateX(-50%)" }}
               aria-hidden
             >
               <div className="absolute left-1/2 top-1/2 h-12 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/80" />
@@ -103,7 +103,7 @@ export function TransformationSlider() {
           </div>
 
           <div className="mt-4 flex items-center justify-center gap-4">
-            <span className="text-sm text-gray-600">Current state</span>
+            <span className="text-sm text-gray-600">VSDP state</span>
             <input
               type="range"
               min={10}
@@ -111,9 +111,9 @@ export function TransformationSlider() {
               value={width}
               onChange={(e) => setWidth(Number(e.target.value))}
               className="h-2 w-64 max-w-full cursor-pointer appearance-none rounded-full bg-gray-200 accent-vs-dark-gray"
-              aria-label="Compare current state vs VSDP state"
+              aria-label="Compare VSDP state vs current state"
             />
-            <span className="text-sm text-gray-600">VSDP state</span>
+            <span className="text-sm text-gray-600">Current state</span>
           </div>
         </ScrollReveal>
 
