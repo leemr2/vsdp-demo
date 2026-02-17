@@ -9,9 +9,19 @@ interface KnowledgeDocument {
   topics: string;
 }
 
-// Documents for the executive/clinical audience chatbot on the main landing page.
-// tech-presentation.md is intentionally excluded — it targets software engineers
-// and is reserved for the tech-specific section chatbot.
+// ─── LANDING PAGE KNOWLEDGE BASE ────────────────────────────────────────────
+// Purpose: General questions from doctors, practice owners, and clinical staff
+//          visiting the main landing page.
+//
+// Intentionally excluded from this set:
+//   • Market-Opportunities.md   — reserved for the Board Member journey
+//   • Market-Research-VSDP.md   — reserved for the Board Member journey
+//   • Strategic-Plan.md         — reserved for the Board Member journey
+//   • tech-presentation.md      — reserved for the Tech section chatbot
+//
+// Combined size of these 8 documents is ~117 KB (~29 000 tokens), comfortably
+// within Anthropic's 30 000 input-token/minute limit with headroom for the
+// system prompt and multi-turn conversation history.
 const DOCUMENTS: KnowledgeDocument[] = [
   {
     id: "VSDP",
@@ -35,32 +45,11 @@ const DOCUMENTS: KnowledgeDocument[] = [
       "Living Intelligence concept, continuously updated patient health profiles, whole-body health monitoring through the eye, predictive health insights for clinicians",
   },
   {
-    id: "Market-Opportunities",
-    title: "Market Opportunities for VSDP",
-    filename: "Market -Opportunities.md",
-    topics:
-      "Market sizing, revenue opportunities for practices and Vision Source, growth projections, partnership models, competitive landscape",
-  },
-  {
-    id: "Market-Research-VSDP",
-    title: "Market Research: VSDP Competitive Analysis",
-    filename: "Market-Research-VSDP.md",
-    topics:
-      "How VSDP compares to other health platforms, market positioning, what makes Vision Source uniquely positioned, competitive differentiation",
-  },
-  {
     id: "Strategic-Assessment",
     title: "Strategic Assessment: Vision Source and VSDP",
     filename: "Strategic-Assessment.md",
     topics:
       "Strategic strengths, risks, organizational readiness, implementation considerations, long-term competitive advantages for Vision Source",
-  },
-  {
-    id: "Strategic-Plan",
-    title: "Strategic Plan: VSDP Rollout and Execution",
-    filename: "Strategic-Plan.md",
-    topics:
-      "How VSDP rolls out across Vision Source practices, phases of adoption, milestones, what practices need to do to participate",
   },
   {
     id: "Emerging-Technologies",
