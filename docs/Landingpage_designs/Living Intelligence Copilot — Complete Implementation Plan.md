@@ -65,12 +65,12 @@ That's the only new dependency. No Pinecone, no embeddings library, nothing else
 
 ------
 
-## Step 2 — Environment Variable (done)
+## Step 2 — Environment Variable 
 
-In `.env`:
+In `.env`:   (done)
 
 ```bash
-ANTHROPIC_API_KEY="sk-ant-..." (done)
+ANTHROPIC_API_KEY="sk-ant-..." 
 ```
 
 In `src/env.js` (T3's env validator — add to the `server` section):

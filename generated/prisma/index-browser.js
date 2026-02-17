@@ -125,14 +125,46 @@ exports.Prisma.PostScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ChatSessionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  section: 'section'
+};
+
+exports.Prisma.ChatMessageScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  role: 'role',
+  content: 'content',
+  sessionId: 'sessionId'
+};
+
+exports.Prisma.LeadScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  name: 'name',
+  email: 'email',
+  organization: 'organization',
+  stakeholder: 'stakeholder',
+  sessionId: 'sessionId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
-  Post: 'Post'
+  Post: 'Post',
+  ChatSession: 'ChatSession',
+  ChatMessage: 'ChatMessage',
+  Lead: 'Lead'
 };
 
 /**
