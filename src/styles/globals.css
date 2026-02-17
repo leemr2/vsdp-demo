@@ -1,6 +1,61 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* Vision Source Core (Gray-based palette with Yellow accent) */
+  --color-vs-yellow: #ffc72c;
+  --color-vs-dark-gray: #2c2c2c;
+
+  /* VSDP Extended (Technology layer) */
+  --color-vsdp-blue-primary: #005daa;
+  --color-vsdp-blue-navy: #003b6f;
+  --color-vsdp-electric: #0084ff;
+  --color-vsdp-teal: #00bfa5;
+  --color-vsdp-purple: #7c4dff;
+
+  /* Semantic / Clinical */
+  --color-clinical-success: #00c853;
+  --color-clinical-warning: #ff6f00;
+  --color-clinical-alert: #d32f2f;
+
+  /* Override font-sans to use Inter (set in layout via next/font) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+  /* Custom animations */
+  --animate-fade-in: fade-in 300ms ease-out;
+  --animate-slide-up: slide-up 300ms ease-out;
+  --animate-pulse-slow: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
 }
