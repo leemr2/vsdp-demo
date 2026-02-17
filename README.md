@@ -22,13 +22,15 @@ Built with the [T3 Stack](https://create.t3.gg/) for type-safe, full-stack devel
 - **[TypeScript](https://www.typescriptlang.org/)** - Type safety with strict mode
 - **[tRPC](https://trpc.io)** - End-to-end typesafe APIs
 - **[Prisma](https://prisma.io)** - Type-safe ORM with SQLite
-- **[Tailwind CSS](https://tailwindcss.com)** - Utility-first CSS framework
-- **[Anthropic Claude API](https://www.anthropic.com)** - AI-powered Living Intelligence Copilot
+- **[Tailwind CSS v4](https://tailwindcss.com)** - Utility-first CSS (CSS-based `@theme` config)
+- **[Framer Motion](https://www.framer.com/motion/)** - Animations, hero transitions, scroll-reveal
+- **[Lucide React](https://lucide.dev)** - Icons (design system)
+- **[Lottie React](https://lottiereact.com)** - Lottie animations (Living Intelligence pillar icons)
+- **[Anthropic Claude API](https://www.anthropic.com)** - AI-powered Living Intelligence Copilot (integration planned)
 
 ### Planned Integrations
 
 - **Recharts/D3.js** - Data visualizations
-- **Framer Motion** - Animations and transitions
 - **React Flow** - Interactive diagrams
 - **jsPDF/Puppeteer** - PDF generation
 
@@ -78,34 +80,45 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ```
 vsdp-demo/
 ├── src/
-│   ├── app/                    # Next.js App Router pages
-│   │   ├── (stakeholders)/    # Stakeholder-specific routes
-│   │   │   ├── providers/     # Provider Clinical Intelligence Hub
-│   │   │   ├── pharma/        # Pharma Clinical Trial Revolution
-│   │   │   ├── ehr/           # EHR Integration Layer
-│   │   │   └── bigtech/       # Big Tech Consumer Platform
-│   │   ├── api/               # API routes (Claude integration)
-│   │   └── layout.tsx         # Root layout
+│   ├── app/                    # Next.js App Router
+│   │   ├── _components/
+│   │   │   ├── landing/        # Main landing page sections
+│   │   │   │   ├── Header.tsx, Footer.tsx
+│   │   │   │   ├── HeroSection.tsx, LivingIntelligence.tsx, TransformationSlider.tsx
+│   │   │   │   ├── StakeholderPathways.tsx, PlatformVision.tsx, ImplementationRoadmap.tsx
+│   │   │   │   ├── TrustSection.tsx, CTASection.tsx, CopilotButton.tsx
+│   │   │   │   └── ScrollReveal.tsx
+│   │   │   └── post.tsx       # Example tRPC component
+│   │   ├── (stakeholders)/     # Stakeholder routes (to be implemented)
+│   │   │   ├── providers/      # Provider Clinical Intelligence Hub
+│   │   │   ├── pharma/         # Pharma Clinical Trial Revolution
+│   │   │   ├── ehr/            # EHR Integration Layer
+│   │   │   └── bigtech/        # Big Tech Consumer Platform
+│   │   ├── api/                # API routes (tRPC, future Claude)
+│   │   ├── layout.tsx          # Root layout (Inter font, metadata)
+│   │   └── page.tsx            # Main landing page
 │   ├── server/
-│   │   ├── api/               # tRPC routers
-│   │   │   ├── root.ts        # Root router
-│   │   │   ├── digitalTwin.ts # Digital twin endpoints
-│   │   │   └── trials.ts      # Trial simulation endpoints
-│   │   └── db.ts              # Prisma client
-│   ├── trpc/                  # tRPC client setup
-│   └── styles/
-│       └── globals.css        # Global styles
+│   │   ├── api/                # tRPC routers
+│   │   │   ├── root.ts
+│   │   │   └── routers/
+│   │   └── db.ts               # Prisma client
+│   ├── trpc/                   # tRPC client setup
+│   ├── styles/
+│   │   └── globals.css         # Tailwind v4 @theme (VSDP colors, fonts)
+│   └── env.js                  # Environment validation
 ├── prisma/
-│   ├── schema.prisma          # Database schema
-│   └── migrations/            # Database migrations
-├── public/                    # Static assets
-└── docs/                      # Project documentation
+│   ├── schema.prisma           # Database schema
+│   └── migrations/
+├── public/
+│   └── images/                 # Hero images, logos, Lottie animations
+├── docs/                       # Project documentation
+└── VSDP_Brand_Guidelines.md    # Design system reference
 ```
 
 ## 🎨 Core Features
 
-### F1: Landing Page & Journey Selection
-Hero section with stakeholder pathway selection (Providers, Pharma, EHR, Big Tech)
+### F1: Landing Page & Journey Selection ✅
+Main landing page with hero (split-screen current vs VSDP state), Living Intelligence foundation, before/after transformation slider, four stakeholder pathway cards (Providers, Pharma, EHR, Big Tech), platform vision diagram, implementation roadmap, trust section, and CTA. Sticky header, footer, and Living Intelligence Copilot floating button (stub). Stakeholder links point to `/providers`, `/pharma`, `/ehr`, `/bigtech` (routes to be implemented).
 
 ### F2: Provider Clinical Intelligence Hub
 - Digital Twin Simulator with patient dashboards
@@ -137,8 +150,9 @@ System architecture diagram showing how all stakeholder views connect
 
 ### Phase 1: Foundation (Week 1-2) ✅
 - [x] T3 Stack setup with TypeScript strict mode
-- [ ] Landing page with stakeholder selection
-- [ ] Basic routing and navigation
+- [x] Main landing page with stakeholder selection (hero, 8 sections, header, footer, copilot stub)
+- [x] Dependencies: Framer Motion, Lucide React, Lottie React (brand/animations)
+- [ ] Stakeholder route pages (providers, pharma, ehr, bigtech)
 - [ ] Deploy to Vercel staging environment
 
 ### Phase 2: Provider & Pharma Sections (Week 2-3)
@@ -171,11 +185,17 @@ System architecture diagram showing how all stakeholder views connect
 - `npm run dev` - Start development server with Turbo
 - `npm run build` - Build for production
 - `npm run start` - Start production server
+- `npm run preview` - Build then start production server
+- `npm run check` - Lint + TypeScript check (run before commits)
 - `npm run lint` - Run ESLint
+- `npm run lint:fix` - Auto-fix lint issues
 - `npm run typecheck` - Run TypeScript type checking
+- `npm run format:check` - Prettier check
+- `npm run format:write` - Prettier format
 - `npm run db:studio` - Open Prisma Studio (database GUI)
 - `npm run db:push` - Push schema changes to database
-- `npm run db:migrate` - Run database migrations
+- `npm run db:generate` - Create migration
+- `npm run db:migrate` - Deploy migrations
 
 ## 🔒 Security & Privacy
 

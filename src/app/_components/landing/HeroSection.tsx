@@ -206,12 +206,12 @@ export function HeroSection() {
       <AnimatePresence>
         {showHeadline && (
           <motion.div
-            className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-4 bg-gradient-to-t from-white via-white/95 to-transparent px-6 pb-12 pt-24 text-center"
+            className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-4 bg-linear-to-t from-white via-white/95 to-transparent px-6 pb-12 pt-24 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="max-w-3xl text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl lg:leading-[3.5rem]">
+            <h1 className="max-w-3xl text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl lg:leading-14">
               What if you never had to hunt for patient information again?
             </h1>
             <p className="max-w-2xl text-base text-gray-600 md:text-lg">

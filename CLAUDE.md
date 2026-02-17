@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 VSDP Interactive Demo - A Next.js application demonstrating the Vision Source Digital Platform, which transforms optometry from episodic care to continuous health management through AI-powered digital twins.
 
-**Tech Stack**: T3 Stack (Next.js 15, TypeScript strict, tRPC, Prisma/SQLite, Tailwind CSS v4)
+**Tech Stack**: T3 Stack (Next.js 15, TypeScript strict, tRPC, Prisma/SQLite, Tailwind CSS v4). Key UI dependencies: **framer-motion** (animations, hero, scroll-reveal), **lucide-react** (icons), **lottie-react** (Living Intelligence pillar Lottie animations).
 
 ## Commands
 
@@ -41,10 +41,13 @@ Client Component → tRPC React Query → tRPC Server → Prisma → SQLite
 ```
 
 ### Key Directories
+- `src/app/_components/landing/` - Main landing page sections (Header, Footer, HeroSection, LivingIntelligence, TransformationSlider, StakeholderPathways, PlatformVision, ImplementationRoadmap, TrustSection, CTASection, CopilotButton, ScrollReveal)
 - `src/server/api/routers/` - tRPC API routers (add new routers to `root.ts`)
 - `src/trpc/` - Client-side tRPC setup (react.tsx for client, server.ts for RSC)
 - `prisma/schema.prisma` - Database schema (generates to `generated/prisma/`)
 - `src/env.js` - Environment variable validation with Zod
+- `src/styles/globals.css` - Tailwind v4 `@theme` (VSDP brand colors, Inter font, animations)
+- `public/images/` - Hero images, logos, Lottie JSON (Animations/, heroes/, logos/)
 
 ### Import Aliases
 Use `@/*` for src directory imports:
@@ -75,7 +78,7 @@ const { data, isLoading } = api.example.getData.useQuery({ id: "123" });
 ## Project-Specific Guidelines
 
 ### Four Stakeholder Sections
-Routes under `/(stakeholders)/`: providers, pharma, ehr, bigtech - each demonstrates VSDP value for different audiences.
+Routes under `/(stakeholders)/`: providers, pharma, ehr, bigtech - each demonstrates VSDP value for different audiences. The main landing page (`src/app/page.tsx`) links to these paths; the route pages are not yet implemented (links may 404 until built).
 
 ### Design System
 **Vision Source Core** (gray-based with yellow accent):
