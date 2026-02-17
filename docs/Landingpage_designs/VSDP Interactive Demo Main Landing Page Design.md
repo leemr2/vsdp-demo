@@ -19,14 +19,21 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 ### Section 1: Hero - The Problem We're Solving
 
 **Visual Design**: Split-screen animation that auto-plays
+Animation Created with Framer Motion because:
+
+This is a demo platform - animation quality directly reflects your product's sophistication
+Board members on iPads - Need smooth, impressive visuals (Framer Motion is GPU-accelerated)
+You'll iterate frequently - Easier to swap screenshots as you refine messaging
+Sets technical precedent - If you're building a modern web platform, demonstrate modern web practices
 
 **Left Side (Current State - 5 seconds)**
 
 - Four overlapping browser windows scattered across the screen:
-  - Optos viewer showing fundus photo
-  - OCT software with different login screen
-  - EHR with sparse previous visit notes
-  - Patient portal showing "Last visit: 18 months ago"
+  - Multiple images that need reviewed
+  - OCT scans 
+  - Poor Charting Notes notes
+  - EHR with view with multiple screens (confusing)
+  - Visual Field images
 - Visual chaos: Windows flash red highlights showing disconnection
 - Practitioner silhouette (shadow figure) in center, looking frustrated
 - Text overlay: *"Where is the information I need?"*
@@ -35,7 +42,7 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 - Single unified interface, clean and calm
 - Digital twin visualization: Patient at center with data streams flowing in
-- Real-time alerts: "Diabetic retinopathy progression detected"
+- Real-time alerts: "Risk of Diabetic retinopathy progression detected"
 - Predictive insight: "Intervention recommended: 3-month window"
 - Same practitioner silhouette, now confident and decisive
 - Text overlay: *"Everything I need to know, when I need to know it"*
@@ -123,21 +130,21 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 - **Practitioner View**: Fragmented interface screenshots
 - **Patient View**: "I see my eye doctor once a year. I hope nothing's wrong."
-- **Outcome**: Graph showing delayed intervention, 20/200 vision loss
+- **Outcome**: Graph showing delayed intervention, patient only coming in if they notice a problem
 - **Label**: "Reactive Care: Responding to problems after they develop"
 
 **Right Side - VSDP State**:
 
 - **Practitioner View**: Unified digital twin dashboard
 - **Patient View**: "I get notifications when my eyes need attention. My doctor knows everything about my health."
-- **Outcome**: Graph showing early intervention, 20/30 vision preserved
+- **Outcome**: Graph showing early intervention, monitoring and care as needed.
 - **Label**: "Proactive Care: Preventing problems before they cause damage"
 
 **Key Statistics** (Below slider):
 
-- Time spent searching for information: **15 minutes per patient** → **30 seconds**
-- Preventable vision loss: **40% missed interventions** → **95% early detection**
-- Patient engagement: **20% follow-through** → **80% active monitoring**
+- Time spent searching for information: **5 minutes per patient** → **30 seconds** 
+- Preventable vision loss: **Missed interventions** → **Early detection Proactive Care**
+- Patient engagement: **Poor follow-through** → **Active monitoring and Patient Engagement**
 
 ------
 
@@ -155,7 +162,7 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 
 - **Visual**: Practitioner with patient, digital twin hologram floating between them
 - **Headline**: From Context Problem to Complete Clarity
-- **Preview Text**: "See how VSDP integrates all your data—Optos, OCT, ERG, EHR, patient-reported outcomes—into a single unified view that predicts disease progression and personalizes interventions. Experience the digital twin for a complex diabetic patient and watch reactive care become proactive medicine."
+- **Preview Text**: "See how VSDP integrates all your data—Imaging, OCT, Visual Fields, EHR, patient-reported outcomes—into a single unified view that predicts disease progression and personalizes interventions. Experience the digital twin for a complex diabetic patient and watch reactive care become proactive medicine."
 - **Key Benefit Tags**: Clinical Efficiency • Better Outcomes • Competitive Advantage
 - **CTA**: "Experience Provider Transformation →"
 - **Hover Effect**: Card lifts with subtle shadow, patient digital twin animates
@@ -297,7 +304,7 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 **Column 3: Open Ecosystem**
 
 - **Q**: Will I be locked into proprietary systems?
-- **A**: VSDP uses open standards (FHIR, DICOM) and integrates with your existing equipment (Optos, Visionix, RetEval). You own your data. The platform enhances rather than replaces your current workflow.
+- **A**: VSDP uses open standards (FHIR, DICOM) and integrates with your existing equipment (Optos, Visionix, RetEval, Etc.). You own your data. The platform enhances rather than replaces your current workflow.
 - **Badge**: "Open Standards" certification icon
 
 ------
