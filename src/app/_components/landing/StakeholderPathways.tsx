@@ -10,6 +10,7 @@ const PATHWAYS = [
     id: "providers",
     href: "/providers",
     icon: Stethoscope,
+    roleLabel: "Provider",
     headline: "From Context Problem to Complete Clarity",
     preview:
       "See how VSDP integrates all your data—Imaging, OCT, Visual Fields, EHR, patient-reported outcomes—into a single unified view that predicts disease progression and personalizes interventions. Experience the digital twin for a complex diabetic patient and watch reactive care become proactive medicine.",
@@ -20,6 +21,7 @@ const PATHWAYS = [
     id: "pharma",
     href: "/pharma",
     icon: FlaskConical,
+    roleLabel: "Pharma Research",
     headline: "From Years to Months: Accelerated Drug Development",
     preview:
       "Access 30,000+ practices and millions of digital twins for unprecedented clinical trial recruitment speed and real-world efficacy tracking. Simulate how VSDP reduces trial costs by 60% while improving patient diversity and outcome measurement precision.",
@@ -30,6 +32,7 @@ const PATHWAYS = [
     id: "ehr",
     href: "/ehr",
     icon: Building2,
+    roleLabel: "System Integration",
     headline: "The Eye as Gateway to Systemic Health",
     preview:
       "Discover how VSDP detects systemic diseases like diabetes, hypertension, and cardiovascular conditions through retinal biomarkers—often 6+ months before traditional testing. See bidirectional data flow between specialty eye care and primary care through standard FHIR integration.",
@@ -40,6 +43,7 @@ const PATHWAYS = [
     id: "bigtech",
     href: "/bigtech",
     icon: Smartphone,
+    roleLabel: "Tech opportunities",
     headline: "Beyond Healthcare: The Consumer Health Platform",
     preview:
       "Explore how VSDP's clinical validation foundation enables consumer applications impossible to build from scratch—from gamified myopia prevention to XR interfaces controlled by neural signals. Understand the path from FDA-cleared medical device to mass-market consumer platform.",
@@ -84,8 +88,13 @@ export function StakeholderPathways() {
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                   >
-                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-vs-yellow/20 text-vsdp-blue-primary">
-                      <Icon className="h-7 w-7" aria-hidden />
+                    <div className="mb-6 flex items-center gap-3">
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-vs-yellow/20 text-vsdp-blue-primary">
+                        <Icon className="h-7 w-7" aria-hidden />
+                      </div>
+                      <span className="text-sm font-semibold uppercase tracking-wide text-vsdp-blue-primary">
+                        {pathway.roleLabel}
+                      </span>
                     </div>
                     <h3 className="mb-3 text-xl font-semibold text-gray-900 group-hover:text-vsdp-blue-primary">
                       {pathway.headline}

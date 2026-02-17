@@ -1,7 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { ScrollReveal } from "./ScrollReveal";
+
+const HERO_DIGITAL_TWIN = "/images/heroes/DigitalTwin_Visualization.png";
+const HERO_EHR_SCREENS = "/images/heroes/Confusing EHR Screens.png";
 
 const STATS = [
   {
@@ -44,9 +48,21 @@ export function TransformationSlider() {
           <div className="relative flex h-[420px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg md:h-[380px]">
             {/* Left side - VSDP State (more visible when slider is left) */}
             <div
-              className="absolute inset-y-0 left-0 flex flex-col bg-white p-6"
+              className="absolute inset-y-0 left-0 flex flex-col overflow-hidden bg-white/90 p-6 backdrop-blur-[1px]"
               style={{ width: `${100 - width}%` }}
             >
+              {/* Faded hero: digital twin visualization */}
+              <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.18]">
+                <Image
+                  src={HERO_DIGITAL_TWIN}
+                  alt=""
+                  fill
+                  className="object-cover object-center"
+                  sizes="50vw"
+                  aria-hidden
+                />
+              </div>
+              <div className="relative z-10 flex flex-1 flex-col">
               <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-vsdp-electric">
                 Practitioner view
               </h3>
@@ -65,13 +81,26 @@ export function TransformationSlider() {
                   Proactive Care: Preventing problems before they cause damage
                 </p>
               </div>
+              </div>
             </div>
 
             {/* Right side - Current State (more visible when slider is right) */}
             <div
-              className="absolute inset-y-0 right-0 flex flex-col bg-gray-100 p-6"
+              className="absolute inset-y-0 right-0 flex flex-col overflow-hidden bg-gray-100/90 p-6 backdrop-blur-[1px]"
               style={{ width: `${width}%` }}
             >
+              {/* Faded hero: confusing EHR screens */}
+              <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.18]">
+                <Image
+                  src={HERO_EHR_SCREENS}
+                  alt=""
+                  fill
+                  className="object-cover object-center"
+                  sizes="50vw"
+                  aria-hidden
+                />
+              </div>
+              <div className="relative z-10 flex flex-1 flex-col">
               <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
                 Practitioner view
               </h3>
@@ -89,6 +118,7 @@ export function TransformationSlider() {
                 <p className="text-sm font-medium text-gray-800">
                   Reactive Care: Responding to problems after they develop
                 </p>
+              </div>
               </div>
             </div>
 
