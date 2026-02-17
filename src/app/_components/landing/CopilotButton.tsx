@@ -11,6 +11,7 @@ interface Message {
   role: "user" | "assistant";
   content: string;
   isError?: boolean;
+  limitReached?: boolean;
 }
 
 const SUGGESTED_QUESTIONS: Record<string, string[]> = {
@@ -91,6 +92,7 @@ export function CopilotButton({
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [streamingText, setStreamingText] = useState("");
+  const [limitReached, setLimitReached] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -122,10 +124,20 @@ export function CopilotButton({
 
       // Non-streaming error response (rate limit, bad request, etc.)
       if (!res.ok || res.headers.get("Content-Type")?.includes("json")) {
-        const data = (await res.json()) as { message: string; error?: boolean };
+        const data = (await res.json()) as {
+          message: string;
+          error?: boolean;
+          limitReached?: boolean;
+        };
+        if (data.limitReached) setLimitReached(true);
         setMessages([
           ...updatedMessages,
-          { role: "assistant", content: data.message, isError: data.error },
+          {
+            role: "assistant",
+            content: data.message,
+            isError: data.error,
+            limitReached: data.limitReached,
+          },
         ]);
         return;
       }
@@ -289,6 +301,25 @@ export function CopilotButton({
             <div ref={messagesEndRef} />
           </div>
 
+          {/* Limit-reached banner + refresh CTA */}
+          {limitReached && (
+            <div
+              className="mx-3 mb-1 rounded-xl px-4 py-3 text-center text-sm"
+              style={{ background: "#0f172a", border: "1px solid #1e293b" }}
+            >
+              <p className="mb-2 text-slate-300">
+                This chat has reached its limit.
+              </p>
+              <button
+                onClick={() => window.location.reload()}
+                className="rounded-lg px-4 py-1.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                style={{ background: "linear-gradient(135deg, #0084FF, #00BFA5)" }}
+              >
+                Refresh to start a new chat
+              </button>
+            </div>
+          )}
+
           {/* Input */}
           <div
             className="flex items-center gap-2 px-3 py-3"
@@ -305,15 +336,15 @@ export function CopilotButton({
                   void sendMessage(inputValue);
                 }
               }}
-              placeholder="Ask about VSDP..."
-              disabled={isLoading}
+              placeholder={limitReached ? "Chat session ended — refresh to continue" : "Ask about VSDP..."}
+              disabled={isLoading || limitReached}
               aria-label="Chat message input"
-              className="flex-1 rounded-lg px-3 py-2 text-sm text-slate-200 outline-none placeholder:text-slate-600 disabled:opacity-50"
+              className="flex-1 rounded-lg px-3 py-2 text-sm text-slate-200 outline-none placeholder:text-slate-500 disabled:opacity-40"
               style={{ background: "#0f172a", border: "1px solid #1e293b" }}
             />
             <button
               onClick={() => void sendMessage(inputValue)}
-              disabled={!inputValue.trim() || isLoading}
+              disabled={!inputValue.trim() || isLoading || limitReached}
               aria-label="Send message"
               className="flex h-8 w-8 items-center justify-center rounded-lg transition-opacity disabled:opacity-40"
               style={{ background: "#0084FF" }}

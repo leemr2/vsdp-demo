@@ -61,14 +61,15 @@ export function Header() {
           ))}
         </div>
 
-        {/* Request Demo - Desktop */}
+        {/* Contact - Desktop */}
         <div className="hidden md:block">
           <button
             type="button"
             onClick={() => handleNavClick("choose-your-path")}
+            title="email us at mlee@visionsourcewestsahara.com"
             className="rounded-lg bg-vs-yellow px-6 py-3 text-base font-semibold text-gray-900 transition-transform hover:bg-[#E6B325] focus:outline-none focus-visible:ring-2 focus-visible:ring-vs-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-vs-dark-gray active:scale-[0.98]"
           >
-            Request Demo
+            Contact
           </button>
         </div>
 
@@ -105,9 +106,10 @@ export function Header() {
             <button
               type="button"
               onClick={() => handleNavClick("choose-your-path")}
+              title="email us at mlee@visionsourcewestsahara.com"
               className="mt-2 rounded-lg bg-vs-yellow px-4 py-3 text-center text-base font-semibold text-gray-900"
             >
-              Request Demo
+              Contact
             </button>
           </div>
         </div>

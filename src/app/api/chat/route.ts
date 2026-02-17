@@ -39,8 +39,9 @@ export async function POST(req: Request) {
     return Response.json(
       {
         message:
-          "You've sent a lot of messages! Please wait a moment before asking another question.",
+          "You've reached the limit for this session. Please refresh the page to start a new chat.",
         error: true,
+        limitReached: true,
       },
       { status: 429 },
     );
@@ -75,12 +76,20 @@ export async function POST(req: Request) {
     } catch (streamErr) {
       if (streamErr instanceof APIError) {
         const isRateLimit = streamErr.status === 429;
+        const isContextLimit =
+          streamErr.status === 400 &&
+          typeof streamErr.message === "string" &&
+          streamErr.message.toLowerCase().includes("too long");
+        const message = isContextLimit
+          ? "This conversation has reached its length limit. Please refresh the page to start a new chat."
+          : isRateLimit
+            ? "You've reached the limit for this session. Please refresh the page to start a new chat."
+            : "I'm having trouble connecting right now. Please try again in a moment.";
         return Response.json(
           {
-            message: isRateLimit
-              ? "The assistant is handling a lot of requests right now. Please wait a moment and try again."
-              : "I'm having trouble connecting right now. Please try again in a moment.",
+            message,
             error: true,
+            limitReached: isContextLimit || isRateLimit,
           },
           { status: (streamErr.status as number | undefined) ?? 500 },
         );
@@ -130,19 +139,26 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error("[Chat API] Error:", error);
-    if (error instanceof APIError && error.status === 429) {
-      return Response.json(
-        {
-          message:
-            "The assistant is handling a lot of requests right now. Please wait a moment and try again.",
-          error: true,
-        },
-        { status: 429 },
-      );
+    if (error instanceof APIError) {
+      const isContextLimit =
+        error.status === 400 &&
+        typeof error.message === "string" &&
+        error.message.toLowerCase().includes("too long");
+      if (isContextLimit || error.status === 429) {
+        return Response.json(
+          {
+            message:
+              "This conversation has reached its length limit. Please refresh the page to start a new chat.",
+            error: true,
+            limitReached: true,
+          },
+          { status: (error.status as number | undefined) ?? 500 },
+        );
+      }
     }
     return Response.json({
       message:
-        "I'm having trouble connecting right now. Please try again in a moment, or explore the stakeholder sections to learn more about VSDP.",
+        "I'm having trouble connecting right now. Please try again in a moment.",
       error: true,
     });
   }
