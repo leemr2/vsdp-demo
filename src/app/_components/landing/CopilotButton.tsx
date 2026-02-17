@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Sparkles, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, Sparkles } from "lucide-react";
 
 interface CopilotButtonProps {
   currentSection?: "providers" | "pharma" | "ehr" | "bigtech" | "landing";
@@ -46,6 +46,43 @@ const SUGGESTED_QUESTIONS: Record<string, string[]> = {
   ],
 };
 
+// Strip markdown formatting artifacts and return clean plain text
+function cleanMarkdown(text: string): string {
+  return text
+    .replace(/^#{1,6}\s+/gm, "")       // ## Headings
+    .replace(/\*\*(.*?)\*\*/g, "$1")   // **bold**
+    .replace(/\*(.*?)\*/g, "$1")       // *italic*
+    .replace(/`([^`]+)`/g, "$1")       // `code`
+    .replace(/^[-*]\s+/gm, "")        // - bullet points
+    .replace(/^\d+\.\s+/gm, "")       // 1. numbered lists
+    .trim();
+}
+
+// Render cleaned text as spaced paragraphs
+function MessageContent({ text }: { text: string }) {
+  const cleaned = cleanMarkdown(text);
+  const paragraphs = cleaned.split(/\n{2,}/).filter(Boolean);
+  return (
+    <div className="space-y-3">
+      {paragraphs.map((para, i) => (
+        <p key={i} className="leading-relaxed">
+          {para.replace(/\n/g, " ")}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+// Blinking cursor shown while streaming
+function StreamingCursor() {
+  return (
+    <span
+      className="ml-0.5 inline-block h-[1em] w-[2px] translate-y-px animate-pulse rounded-sm"
+      style={{ background: "#0084FF" }}
+    />
+  );
+}
+
 export function CopilotButton({
   currentSection = "landing",
 }: CopilotButtonProps) {
@@ -53,12 +90,14 @@ export function CopilotButton({
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [streamingText, setStreamingText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Scroll to bottom whenever messages update OR new streaming text arrives
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, streamingText]);
 
   useEffect(() => {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 100);
@@ -72,6 +111,7 @@ export function CopilotButton({
     setMessages(updatedMessages);
     setInputValue("");
     setIsLoading(true);
+    setStreamingText("");
 
     try {
       const res = await fetch("/api/chat", {
@@ -79,15 +119,35 @@ export function CopilotButton({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: updatedMessages, currentSection }),
       });
-      const data = (await res.json()) as { message: string; error?: boolean };
+
+      // Non-streaming error response (rate limit, bad request, etc.)
+      if (!res.ok || res.headers.get("Content-Type")?.includes("json")) {
+        const data = (await res.json()) as { message: string; error?: boolean };
+        setMessages([
+          ...updatedMessages,
+          { role: "assistant", content: data.message, isError: data.error },
+        ]);
+        return;
+      }
+
+      // Stream the response chunk by chunk
+      const reader = res.body!.getReader();
+      const decoder = new TextDecoder();
+      let fullText = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        fullText += decoder.decode(value, { stream: true });
+        setStreamingText(fullText);
+      }
+
+      // Commit final message and clear streaming buffer
       setMessages([
         ...updatedMessages,
-        {
-          role: "assistant",
-          content: data.message,
-          isError: data.error,
-        },
+        { role: "assistant", content: fullText },
       ]);
+      setStreamingText("");
     } catch {
       setMessages([
         ...updatedMessages,
@@ -97,6 +157,7 @@ export function CopilotButton({
           isError: true,
         },
       ]);
+      setStreamingText("");
     } finally {
       setIsLoading(false);
     }
@@ -110,7 +171,7 @@ export function CopilotButton({
       {/* Chat panel */}
       {isOpen && (
         <div
-          className="fixed bottom-24 right-6 z-50 flex h-[520px] w-[380px] flex-col overflow-hidden rounded-2xl shadow-2xl"
+          className="fixed inset-0 z-50 flex flex-col overflow-hidden shadow-2xl sm:inset-auto sm:bottom-24 sm:right-6 sm:h-[75vh] sm:max-h-[800px] sm:w-[33vw] sm:min-w-[420px] sm:rounded-2xl"
           style={{ background: "#1a1a2e", border: "1px solid #0084FF33" }}
         >
           {/* Header */}
@@ -174,7 +235,7 @@ export function CopilotButton({
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className="max-w-[85%] rounded-xl px-3 py-2 text-sm leading-relaxed"
+                  className="max-w-[85%] rounded-xl px-3 py-2.5 text-sm"
                   style={
                     msg.role === "user"
                       ? { background: "#0084FF", color: "white" }
@@ -185,25 +246,46 @@ export function CopilotButton({
                         }
                   }
                 >
-                  {msg.content}
+                  {msg.role === "assistant" ? (
+                    <MessageContent text={msg.content} />
+                  ) : (
+                    msg.content
+                  )}
                 </div>
               </div>
             ))}
 
-            {isLoading && (
+            {/* Live streaming bubble */}
+            {streamingText && (
               <div className="flex justify-start">
                 <div
-                  className="flex items-center gap-2 rounded-xl px-3 py-2"
+                  className="max-w-[85%] rounded-xl px-3 py-2.5 text-sm"
                   style={{
                     background: "#0f172a",
+                    color: "#e2e8f0",
                     border: "1px solid #1e293b",
                   }}
                 >
-                  <Loader2 className="h-3 w-3 animate-spin text-blue-400" />
-                  <span className="text-xs text-slate-500">Thinking...</span>
+                  <MessageContent text={streamingText} />
+                  <StreamingCursor />
                 </div>
               </div>
             )}
+
+            {/* Thinking indicator — only shown before first chunk arrives */}
+            {isLoading && !streamingText && (
+              <div className="flex justify-start">
+                <div
+                  className="flex items-center gap-1.5 rounded-xl px-3 py-2.5"
+                  style={{ background: "#0f172a", border: "1px solid #1e293b" }}
+                >
+                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-blue-400 [animation-delay:0ms]" />
+                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-blue-400 [animation-delay:150ms]" />
+                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-blue-400 [animation-delay:300ms]" />
+                </div>
+              </div>
+            )}
+
             <div ref={messagesEndRef} />
           </div>
 
@@ -242,13 +324,13 @@ export function CopilotButton({
         </div>
       )}
 
-      {/* Floating button */}
+      {/* Floating button — hidden on mobile when panel is open (header X handles close) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label={
           isOpen ? "Close Copilot" : "Open Living Intelligence Copilot"
         }
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-110 active:scale-95"
+        className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-110 active:scale-95 ${isOpen ? "hidden sm:flex" : "flex"}`}
         style={{
           background: "linear-gradient(135deg, #0084FF, #00BFA5)",
           boxShadow: "0 0 20px #0084FF55",
