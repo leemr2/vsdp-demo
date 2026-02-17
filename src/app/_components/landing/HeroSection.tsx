@@ -13,7 +13,6 @@ const HERO_IMAGES_LEFT = [
 ] as const;
 
 const LEFT_DURATION_MS = 5000;
-const RIGHT_DURATION_MS = 5000;
 const TRANSITION_DURATION_MS = 2000;
 
 type Phase = "left" | "transition" | "right";
@@ -25,28 +24,15 @@ function scrollToSection(id: string) {
 export function HeroSection() {
   const [phase, setPhase] = useState<Phase>("left");
   const [showHeadline, setShowHeadline] = useState(false);
-  const [hasCompletedCycle, setHasCompletedCycle] = useState(false);
   const [redFlash, setRedFlash] = useState(false);
-
-  const [transitionTarget, setTransitionTarget] = useState<"left" | "right">("right");
 
   const advancePhase = useCallback(() => {
     setPhase((p) => {
-      if (p === "left") {
-        setTransitionTarget("right");
-        return "transition";
-      }
-      if (p === "transition") {
-        if (!hasCompletedCycle) setHasCompletedCycle(true);
-        return transitionTarget;
-      }
-      if (p === "right") {
-        setTransitionTarget("left");
-        return "transition";
-      }
-      return "left";
+      if (p === "left") return "transition";
+      if (p === "transition") return "right";
+      return p; // stay on right
     });
-  }, [hasCompletedCycle, transitionTarget]);
+  }, []);
 
   useEffect(() => {
     if (phase === "left") {
@@ -57,15 +43,12 @@ export function HeroSection() {
       const t = setTimeout(advancePhase, TRANSITION_DURATION_MS);
       return () => clearTimeout(t);
     }
-    if (phase === "right") {
-      const t = setTimeout(advancePhase, RIGHT_DURATION_MS);
-      return () => clearTimeout(t);
-    }
+    // right: no timeout, stay forever
   }, [phase, advancePhase]);
 
   useEffect(() => {
-    if (hasCompletedCycle && !showHeadline) setShowHeadline(true);
-  }, [hasCompletedCycle, showHeadline]);
+    if (phase === "right" && !showHeadline) setShowHeadline(true);
+  }, [phase, showHeadline]);
 
   useEffect(() => {
     const interval = setInterval(() => setRedFlash((f) => !f), 800);
@@ -78,20 +61,21 @@ export function HeroSection() {
       className="relative min-h-[85vh] overflow-hidden bg-gray-100 lg:min-h-[90vh]"
       aria-label="Hero - The problem we solve"
     >
-      <div className="grid h-full min-h-[85vh] grid-cols-1 lg:grid-cols-2">
-        {/* Left half - Current State */}
-        <div className="relative flex items-center justify-center bg-gray-200/80 p-4 lg:p-8">
-          <AnimatePresence mode="wait">
-            {phase === "left" && (
-              <motion.div
-                key="left"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="relative h-full w-full max-w-2xl"
-              >
-                {/* Scattered browser windows */}
+      {/* Full-width hero area: left images first, then right fades in on top */}
+      <div className="relative h-full min-h-[85vh] w-full lg:min-h-[90vh]">
+        {/* Layer 1: Left (current state) - full width, phases out after 5s */}
+        <AnimatePresence mode="wait">
+          {phase === "left" && (
+            <motion.div
+              key="left"
+              className="absolute inset-0 flex items-center justify-center bg-gray-200/80 p-4 lg:p-8"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: TRANSITION_DURATION_MS / 1000 }}
+            >
+              <div className="relative h-full w-full">
+                {/* Scattered browser windows - full width spread */}
                 {HERO_IMAGES_LEFT.map((img, i) => (
                   <motion.div
                     key={img.alt}
@@ -99,7 +83,7 @@ export function HeroSection() {
                     style={{
                       left: img.x,
                       top: img.y,
-                      width: "clamp(140px, 28vw, 220px)",
+                      width: "clamp(140px, 18vw, 280px)",
                       transform: `rotate(${img.rotate}deg)`,
                     }}
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -116,13 +100,13 @@ export function HeroSection() {
                         alt={img.alt}
                         fill
                         className="object-cover"
-                        sizes="220px"
+                        sizes="280px"
                       />
                     </div>
                   </motion.div>
                 ))}
-                {/* Frustrated doctor silhouette - center */}
-                <div className="absolute left-1/2 top-1/2 z-10 w-40 -translate-x-1/2 -translate-y-1/2 lg:w-52">
+                {/* Frustrated doctor silhouette - right of center to avoid covering content */}
+                <div className="absolute left-[68%] top-1/2 z-10 w-40 -translate-x-1/2 -translate-y-1/2 lg:w-52">
                   <Image
                     src="/images/heroes/frustrated doctor.svg"
                     alt="Practitioner silhouette - frustrated"
@@ -140,33 +124,34 @@ export function HeroSection() {
                 >
                   &ldquo;Where is the information I need?&rdquo;
                 </motion.p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        </div>
-
-        {/* Right half - VSDP State */}
-        <div className="relative flex items-center justify-center bg-gray-50 p-4 lg:p-8">
-          <AnimatePresence mode="wait">
-            {(phase === "right" || phase === "transition") && (
-              <motion.div
-                key="right"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: phase === "right" ? 1 : 0.3 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: phase === "transition" ? 0.3 : 0.6 }}
-                className="relative h-full w-full max-w-2xl"
-              >
-                {/* Unified Digital Twin visualization */}
-                <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
+        {/* Layer 2: Right (VSDP state) - full width, fades in on top after transition */}
+        <AnimatePresence>
+          {(phase === "right" || phase === "transition") && (
+            <motion.div
+              key="right"
+              className="absolute inset-0 flex items-center justify-center bg-gray-50 p-4 lg:p-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: TRANSITION_DURATION_MS / 1000,
+              }}
+            >
+              <div className="relative h-full w-full">
+                {/* Unified Digital Twin - full width */}
+                <div className="relative mx-auto max-h-[70vh] w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
                   <div className="relative aspect-video w-full">
                     <Image
                       src="/images/heroes/DigitalTwin_Visualization.png"
                       alt="Unified digital twin interface with patient at center and data streams"
                       fill
                       className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      sizes="100vw"
                     />
                   </div>
                   {/* Alert overlays */}
@@ -179,8 +164,8 @@ export function HeroSection() {
                     </span>
                   </div>
                 </div>
-                {/* Happy doctor silhouette */}
-                <div className="absolute -bottom-2 right-1/4 z-10 w-28 lg:right-1/4 lg:w-36">
+                {/* Happy doctor silhouette - far right to avoid covering CTA and text */}
+                <div className="absolute bottom-4 right-4 z-0 w-24 lg:right-8 lg:w-32">
                   <Image
                     src="/images/heroes/Happy doctor.svg"
                     alt="Practitioner silhouette - confident"
@@ -189,17 +174,20 @@ export function HeroSection() {
                     className="h-auto w-full object-contain"
                   />
                 </div>
-                <motion.p
-                  className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-center text-lg font-medium text-gray-800 lg:text-xl"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: phase === "right" ? 1 : 0 }}
-                >
-                  &ldquo;Everything I need to know, when I need to know it&rdquo;
-                </motion.p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                {!showHeadline && (
+                  <motion.p
+                    className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-center text-lg font-medium text-gray-800 lg:text-xl"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: phase === "right" ? 1 : 0 }}
+                    transition={{ delay: phase === "right" ? 0.2 : 0 }}
+                  >
+                    &ldquo;Everything I need to know, when I need to know it&rdquo;
+                  </motion.p>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Headline and CTAs - appear after first cycle */}
