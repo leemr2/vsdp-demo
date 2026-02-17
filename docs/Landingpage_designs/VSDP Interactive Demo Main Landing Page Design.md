@@ -19,6 +19,7 @@ The design follows a narrative arc: Problem → Vision → Solution → Your Pat
 ### Section 1: Hero - The Problem We're Solving
 
 **Visual Design**: Split-screen animation that auto-plays
+
 Animation Created with Framer Motion because:
 
 This is a demo platform - animation quality directly reflects your product's sophistication
@@ -73,7 +74,8 @@ Sets technical precedent - If you're building a modern web platform, demonstrate
 
 ### Section 2: The Living Intelligence Foundation
 
-**Visual Design**: Three-column layout with animated icons
+**Visual Design**: Three-column layout with animated icons 
+  Lottie Animations
 
 **Section Headline**:
 
